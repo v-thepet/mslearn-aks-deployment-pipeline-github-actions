@@ -30,5 +30,13 @@ jobs:
           tags: ${{secrets.ACR_NAME}}/contoso-website:latest
           push: true
           
-          
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: build_push_image
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v2   
           
